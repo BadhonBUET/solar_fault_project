@@ -1,0 +1,9 @@
+path: .  # dataset root dir
+train: images  # train images path (dataset ফোল্ডারের ভেতরের images ফোল্ডার)
+val: images    # validation images path
+
+# আপনার ক্লাসের নামগুলো এখানে বসিয়ে দিন
+names:
+  0: Hotspot    # লেবেল স্টুডিওতে প্রথম যে ক্লাস বা লেবেল দিয়েছিলেন
+  1: Line Fault     # যদি দ্বিতীয় কোনো লেবেল বা ফল্ট থাকে (যেমন Hotspot বা Line Fault)
+  2: Panel

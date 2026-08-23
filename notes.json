@@ -1,0 +1,21 @@
+{
+  "categories": [
+    {
+      "id": 0,
+      "name": "Hotspot"
+    },
+    {
+      "id": 1,
+      "name": "Line Fault"
+    },
+    {
+      "id": 2,
+      "name": "Panel"
+    }
+  ],
+  "info": {
+    "year": 2026,
+    "version": "1.0",
+    "contributor": "Label Studio"
+  }
+}
