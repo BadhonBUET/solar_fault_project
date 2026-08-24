@@ -1,0 +1,7 @@
+path: ""  # এটি খালি রাখা হলো যাতে নিচের পূর্ণাঙ্গ পাথ সরাসরি কাজ করে
+train: D:/OneDrive - BUET/Desktop/312/dataset/solar_fault_project/dataset_obb/images  # আপনার ছবির আসল ফোল্ডারের পূর্ণাঙ্গ পাথ
+val: D:/OneDrive - BUET/Desktop/312/dataset/solar_fault_project/dataset_obb/images    # ভ্যালিডেশনের জন্যও একই ফোল্ডার
+
+# ক্লাসের তথ্য
+nc: 1
+names: ['Panel']

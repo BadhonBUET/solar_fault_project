@@ -1,0 +1,7 @@
+path: D:/OneDrive - BUET/Desktop/312/dataset/solar_fault_project/dataset_obb  # রুট ফোল্ডার
+train: images/train  # ট্রেইনিং ছবির ফোল্ডারের নাম
+val: images/train    # ভ্যালিডেশনের জন্য আপাতত ট্রেইনিং ফোল্ডারটিই ব্যবহার করা হলো
+
+# ক্লাসের তথ্য
+nc: 1
+names: ['Panel']
