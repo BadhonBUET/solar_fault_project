@@ -1,5 +1,5 @@
 # ==============================================================================
-# Thermal Image Analysis System for Photovoltaic Fault Detection
+# 2nd code Thermal Image Analysis System for Photovoltaic Fault Detection
 # ------------------------------------------------------------------------------
 # This file is the working version of your code with four lightweight DSP
 # add-ons layered on top. NOTHING in the original detection or classification
@@ -696,6 +696,10 @@ def detect_faults_inside_roi(gray_aligned, panel_roi_mask, wav_energy):
         else:
             continue    # Below all thresholds — not a real fault, skip
 
+        if f_type == "Line Fault" and confidence_pct < 90:
+            f_type = "Partial Shading"
+            color = (0, 165, 255)
+
         # ── DSP ADD-ON 3: IIR row-profile verification for line-type faults ──
         # This runs ONLY for Line Fault and Partial Shading (not hotspots).
         # If the IIR filter does NOT confirm a sustained row-level elevation,
@@ -721,11 +725,14 @@ def detect_faults_inside_roi(gray_aligned, panel_roi_mask, wav_energy):
             'iir_confirmed': iir_confirmed,   # None=not tested, True/False=IIR result
         })
 
-    # ── DSP ADD-ON 4: Compute FSI and sort by severity ────────────────────────
+# ── DSP ADD-ON 4: Compute FSI and sort by severity ────────────────────────
     for fd in detected_faults:
         fd['fsi'] = compute_fsi(fd, gray_aligned, panel_roi_mask)
 
-    detected_faults.sort(key=lambda f: f['fsi'], reverse=True)   # Worst first
+    # Remove faults with FSI below 5 (too minor to report)
+    detected_faults = [fd for fd in detected_faults if fd['fsi'] >= 5.0]
+
+    detected_faults.sort(key=lambda f: f['fsi'], reverse=True)   # Worst first   # Worst first
 
     # Build the percentage brightness map for verified fault pixels only
     percentage_map = np.zeros_like(thermal_delta, dtype=np.float32)
